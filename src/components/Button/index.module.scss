@@ -1,0 +1,22 @@
+@import '../../var.scss';
+
+.btn {
+   display: inline-flex;
+   align-items: center;
+   justify-content: center;
+   text-align: center;
+   border: none;
+   padding: 10px 20px;
+   border-radius: $radius;
+   transition: background $transition, color $transition;
+   cursor: pointer;
+
+   &.active {
+      background-color: $color-active;
+      color: #fff;
+   }
+
+   &.reverse {
+      background-color: $color-reverse;
+   }
+}

@@ -6,10 +6,29 @@ import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+   // <React.StrictMode>
+      <App />
+   // </React.StrictMode>
 );
+
+// const root2 = ReactDOM.createRoot(document.getElementById('root_2'));
+// function tick() {
+//    const element = (
+//       <div style={{ 'textAlign': 'center' }}>
+//          <p>Now time:</p>
+//          <p>{new Date().toLocaleTimeString()}</p>
+//       </div>
+//    );
+
+//    root2.render(element);
+// }
+// setInterval(tick, 1000);
+
+// Горячая перезагрузка
+// if (module.hot) {
+//    module.hot.accept();
+// }
+
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

@@ -1,0 +1,15 @@
+.tableHeader {
+   display: flex;
+   justify-content: center;
+   gap: 15px;
+   padding-block: 15px;
+}
+
+.list-news {
+   &__item {
+      border-radius: 20px;
+      border: 1px solid rgb(226, 226, 226);
+      padding: 20px;
+      margin-block: 30px;
+   }
+}
