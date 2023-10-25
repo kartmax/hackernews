@@ -165,7 +165,7 @@ class App extends Component {
             <WithLoadingButton
                className='btn'
                isLoading={isLoading}
-               textButton='Еще новости'
+               textButton='More news'
                onClick={() => this.fetchSearchTopStories(onSearch, page + 1)}
             />
 
