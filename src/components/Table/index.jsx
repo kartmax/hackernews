@@ -53,7 +53,7 @@ class Table extends Component {
             <div className='list-news__item' key={item.objectID}>
                <p>Title: {item.title}</p>
                <p>Author: {item.author}</p>
-               <a href={item.url}>{item.url}</a>
+               <a href={item.url}>Read</a>
                <p>Comments: {item.num_comments}</p>
                <p>Points: {item.points}</p>
    

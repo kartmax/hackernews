@@ -1,7 +1,8 @@
 import styles from './index.module.scss';
+import { getClassesFromObj } from '../../functions';
 
 const Button =({textButton, onClick, className='' }) => {
-   let classes = className.split(' ').map(c => styles[c]).join(' ');
+   let classes = getClassesFromObj(className, styles);
 
    return (
       <div style={{ paddingBlock: '15px' }}>
