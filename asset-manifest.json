@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/hackernews/static/css/main.0c314ca4.css",
-    "main.js": "/hackernews/static/js/main.02ba1d65.js",
+    "main.js": "/hackernews/static/js/main.7a4c52b2.js",
     "static/js/787.550f3429.chunk.js": "/hackernews/static/js/787.550f3429.chunk.js",
     "static/media/roboto-latin-500-normal.woff2": "/hackernews/static/media/roboto-latin-500-normal.f25d774ecfe0996f8eb5.woff2",
     "static/media/roboto-latin-700-normal.woff2": "/hackernews/static/media/roboto-latin-700-normal.227c93190fe7f82de3f8.woff2",
@@ -61,11 +61,11 @@
     "static/media/roboto-greek-ext-700-normal.woff": "/hackernews/static/media/roboto-greek-ext-700-normal.249853776d22a271b2b5.woff",
     "index.html": "/hackernews/index.html",
     "main.0c314ca4.css.map": "/hackernews/static/css/main.0c314ca4.css.map",
-    "main.02ba1d65.js.map": "/hackernews/static/js/main.02ba1d65.js.map",
+    "main.7a4c52b2.js.map": "/hackernews/static/js/main.7a4c52b2.js.map",
     "787.550f3429.chunk.js.map": "/hackernews/static/js/787.550f3429.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.0c314ca4.css",
-    "static/js/main.02ba1d65.js"
+    "static/js/main.7a4c52b2.js"
   ]
 }
