@@ -13,3 +13,20 @@
       margin-block: 30px;
    }
 }
+
+.indicators {
+   display: flex;
+   gap: 20px;
+   padding-block: 20px;
+   position: absolute;
+   top: 0;
+   right: 30px;
+
+}
+
+.card-footer {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   width: 100%;
+}

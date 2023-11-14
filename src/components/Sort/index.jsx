@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import Button from "../Button";
+import ButtonSort from "../Button";
 import { sortBy } from "lodash";
 
 export const SORTS_KEYS = [
@@ -26,9 +26,9 @@ const Sort = ({ textSort, sortKey, onSort, sortActive, isSortReverse }) => {
 
    return (
       <span className="">
-         <Button 
-            className={listClass}
+         <ButtonSort
             textButton={textSort}
+            className={listClass}
             onClick={()=>onSort(sortKey)}
          />
       </span>

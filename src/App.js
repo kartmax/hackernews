@@ -1,13 +1,21 @@
 import { Component } from 'react';
 import './App.scss';
 
+import '@fontsource/roboto/300.css';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/500.css';
+import '@fontsource/roboto/700.css';
+
+
 import { NewsAPI } from './api/api';
 
-import Search from './components/Search';
+import TopBar from './components/TopBar';
 import Counter from './components/Counter';
+import Loading from './components/Loading';
 
-import { WithLoadingButton } from './hoc/WithLoading';
 import { WithErrorTable } from './hoc/WithError';
+import { Container, Stack } from '@mui/material';
+import { LoadingButton } from '@mui/lab';
 
 const updateSearchTopStoriesState = (hits, page) => (prevState) => {
    const { searchKey, results } = prevState;
@@ -87,7 +95,10 @@ class App extends Component {
 
       NewsAPI.getNews(onSearch, page)
          .then(data => this._isMounted && this.setSearchTopStories(data))
-         .catch(error => this._isMounted && this.setState({ error }));
+         .catch(error => {
+            this.setState({isLoading: false});
+            this._isMounted && this.setState({ error });
+         });
    };
 
    needToSearchTopStories(onSearch) {
@@ -145,31 +156,36 @@ class App extends Component {
       ) || [];
 
       return (
-         <div className='App' style={{ paddingBlock: '30px' }}>
-
-            <Search
-               placeholder='Search'
-               onChange={this.onSearchChange}
-               onSubmit={this.onSearchSubmit}
-               onSearch={onSearch}
-               isLoading={isLoading}
+         <div className='App'>
+            <TopBar 
+               onChange={this.onSearchChange} 
+               onSubmit={this.onSearchSubmit} 
+               onSearch={onSearch} 
+               isLoading={isLoading} 
             />
+            
+            {
+            (isLoading && !this.state.results) || (isLoading && this.state.results && !this.state.results[this.state.searchKey]) 
+            ? <Loading/>
+            : <Container style={{ paddingBlock: '30px' }}>
+               <WithErrorTable
+                  error={error}
+                  list={list}
+                  onDismised={this.onDismised}
+                  isLoading={isLoading}
+               />
+               <Counter count={count} />
+               <Stack direction={'row'} justifyContent={'center'}>
+                  <LoadingButton 
+                     onClick={() => this.fetchSearchTopStories(onSearch, page + 1)} 
+                     loading={isLoading} 
+                     variant="outlined">
+                        More news
+                  </LoadingButton>
+               </Stack>
+            </Container>
+            }
 
-            <WithErrorTable
-               error={error}
-               list={list}
-               onDismised={this.onDismised}
-               isLoading={isLoading}
-            />
-
-            <WithLoadingButton
-               className='btn'
-               isLoading={isLoading}
-               textButton='More news'
-               onClick={() => this.fetchSearchTopStories(onSearch, page + 1)}
-            />
-
-            <Counter count={count} />
 
          </div>
       )

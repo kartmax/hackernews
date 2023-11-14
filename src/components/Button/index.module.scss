@@ -11,12 +11,28 @@
    transition: background $transition, color $transition;
    cursor: pointer;
 
+   svg {
+      opacity: .3;
+      transition: all .25s ease;
+   }
+
    &.active {
-      background-color: $color-active;
+      background: #1976d2; 
       color: #fff;
+      &:hover {
+         background: #1976d2; 
+         color: #fff;
+      }
+
+      svg {
+         opacity: 1;
+      }
    }
 
    &.reverse {
-      background-color: $color-reverse;
+      svg {
+         transform: rotate(180deg);
+      }
+      // background-color: $color-reverse;
    }
 }

@@ -1,11 +1,20 @@
+import React from 'react';
 import './index.scss';
+import { Badge, ButtonGroup, Grid } from '@mui/material';
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+import TextsmsIcon from '@mui/icons-material/Textsms';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 
-import Button from "../Button";
+// import Button from "../Button";
 import Sort, { SORTS_METHODS, SORTS_KEYS } from "../Sort";
 import { Component } from 'react';
 
 class Table extends Component {
-   constructor (props) {
+   constructor(props) {
       super(props);
 
       this.state = {
@@ -19,57 +28,70 @@ class Table extends Component {
 
    changeSort(sortKey) {
       const isSortReverse = this.state.sortKey === sortKey && !this.state.isSortReverse;
-      this.setState({ sortKey, isSortReverse, sortActive : sortKey });
+      this.setState({ sortKey, isSortReverse, sortActive: sortKey });
    }
 
-   render () {
+   render() {
 
       const {
-         list, 
+         list,
          onDismised,
          isLoading
       } = this.props;
 
       const {
-         sortKey, 
-         isSortReverse, 
+         sortKey,
+         isSortReverse,
          sortActive
       } = this.state;
 
-      const listSortBtn = SORTS_KEYS.map((itemKey, idx) => 
-         <Sort key={idx} 
-            textSort={itemKey} 
-            sortKey={itemKey} 
-            onSort={this.changeSort} 
-            sortActive={sortActive} 
+      const listSortBtn = SORTS_KEYS.map((itemKey, idx) =>
+         <Sort key={idx}
+            textSort={itemKey}
+            sortKey={itemKey}
+            onSort={this.changeSort}
+            sortActive={sortActive}
             isSortReverse={isSortReverse}
          />);
-   
+
       const sortedList = SORTS_METHODS[sortKey](list),
-            reverseSortedList = isSortReverse ? sortedList.reverse() : sortedList;
-   
-      const listNews = 
+         reverseSortedList = isSortReverse ? sortedList.reverse() : sortedList;
+
+      const listNews =
          reverseSortedList.map(item =>
-            <div className='list-news__item' key={item.objectID}>
-               <p>Title: {item.title}</p>
-               <p>Author: {item.author}</p>
-               <a href={item.url}>Read</a>
-               <p>Comments: {item.num_comments}</p>
-               <p>Points: {item.points}</p>
-   
-               <Button
-                  textButton='Hide'
-                  onClick={() => onDismised(item.objectID)}
-                  className='btn'
-               />
-            </div>
-      );
+            <Grid item sm={6} md={4} key={item.objectID} style={{width: '100%'}}>
+               <Card style={{height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between'}}>
+                  <CardContent style={{position: 'relative'}}>
+                     <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+                        Author: {item.author}
+                     </Typography>
+                     <Typography variant="h5" component="div" style={{marginBlock: '10px 20px'}}>
+                        {item.title}
+                     </Typography>
+                     <div className='indicators'>
+                        <Badge badgeContent={item.num_comments} max={999} color="primary">
+                           <TextsmsIcon color="action" />
+                        </Badge>
+                        <Badge badgeContent={item.points} max={999} color="primary">
+                           <FavoriteIcon color="action" />
+                        </Badge>
+                     </div>
+                  </CardContent>
+                  <CardActions>
+                     <div className='card-footer'>
+                        <Button href={item.url} target="_blank">READE MORE</Button>
+                        <Button color='error' onClick={() => onDismised(item.objectID)}>Hide</Button>
+                     </div>
+                  </CardActions>
+               </Card>
+            </Grid>
+         );
 
       return (
          <>
-            <div className='tableHeader'>{listSortBtn}</div>
-            <div className='list-news'>{listNews}</div>
-            {(list.length === 0 && !isLoading) && <p>Not found</p>}
+            <ButtonGroup style={{paddingBottom: '20px'}}>{listSortBtn}</ButtonGroup>
+            <Grid container spacing={4}>{listNews}</Grid>
+            {(list.length === 0 && !isLoading) && <Typography textAlign={'center'} marginBlock={'20px'} variant='h6'>Not found</Typography>}
          </>
       )
    }
