@@ -38,7 +38,7 @@ export default function TopBar(props) {
          <CssBaseline />
          <HideOnScroll {...props}>
             <AppBar>
-               <Toolbar style={{justifyContent: 'center'}}>
+               <Toolbar style={{justifyContent: 'center', minHeight: '64px'}}>
                   <SearchNews
                      placeholder='Search IT News'
                      onChange={props.onChange}

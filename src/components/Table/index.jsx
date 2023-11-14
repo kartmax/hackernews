@@ -1,6 +1,6 @@
 import React from 'react';
 import './index.scss';
-import { Badge, ButtonGroup, Grid } from '@mui/material';
+import { Badge, ButtonGroup, Grid, IconButton } from '@mui/material';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -8,8 +8,8 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import TextsmsIcon from '@mui/icons-material/Textsms';
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import DeleteIcon from '@mui/icons-material/Delete';
 
-// import Button from "../Button";
 import Sort, { SORTS_METHODS, SORTS_KEYS } from "../Sort";
 import { Component } from 'react';
 
@@ -80,7 +80,9 @@ class Table extends Component {
                   <CardActions>
                      <div className='card-footer'>
                         <Button href={item.url} target="_blank">READE MORE</Button>
-                        <Button color='error' onClick={() => onDismised(item.objectID)}>Hide</Button>
+                        <IconButton color='inherit' onClick={() => onDismised(item.objectID)}>
+                           <DeleteIcon color='action' />
+                        </IconButton>
                      </div>
                   </CardActions>
                </Card>
@@ -89,7 +91,7 @@ class Table extends Component {
 
       return (
          <>
-            <ButtonGroup style={{paddingBottom: '20px'}}>{listSortBtn}</ButtonGroup>
+            <ButtonGroup style={{paddingBottom: '20px', overflowX: 'auto', maxWidth: '100%'}}>{listSortBtn}</ButtonGroup>
             <Grid container spacing={4}>{listNews}</Grid>
             {(list.length === 0 && !isLoading) && <Typography textAlign={'center'} marginBlock={'20px'} variant='h6'>Not found</Typography>}
          </>

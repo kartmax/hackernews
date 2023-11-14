@@ -163,7 +163,7 @@ class App extends Component {
                onSearch={onSearch} 
                isLoading={isLoading} 
             />
-            
+
             {
             (isLoading && !this.state.results) || (isLoading && this.state.results && !this.state.results[this.state.searchKey]) 
             ? <Loading/>
@@ -185,8 +185,7 @@ class App extends Component {
                </Stack>
             </Container>
             }
-
-
+            
          </div>
       )
    };
